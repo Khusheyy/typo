@@ -64,7 +64,7 @@ export function Keyboard({
   theme = "classic",
   enableSound = true,
   enableHaptics = true,
-  soundUrl = "/sounds/sound.ogg",
+  soundUrl = "https://keyb.himan.me/sounds/sound.ogg",
   onKeyEvent,
 }: KeyboardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
