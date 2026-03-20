@@ -223,6 +223,26 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {testStatus !== "finished" && (
+        <div
+          className="fixed top-14 left-10 z-50 font-mono"
+          style={{ fontSize: "12px", color: "#555" }}
+        >
+          made by{" "}
+          <a
+            href="https://x.com/_khusheyyy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline transition-colors duration-200"
+            style={{ color: "inherit", textDecoration: "none" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c518")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#555")}
+          >
+            @_khusheyy
+          </a>
+        </div>
+      )}
     </main>
   );
 }
