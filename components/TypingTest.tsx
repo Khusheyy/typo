@@ -92,8 +92,8 @@ export function TypingTest({
   selectedWords: number;
   onStatusChange?: (status: Status) => void;
 }) {
-  const [words, setWords] = useState<string[]>(() => makeWordList(140, false, false));
-  const [typedWords, setTypedWords] = useState<string[]>(() => Array(140).fill(""));
+  const [words, setWords] = useState<string[]>([]);
+  const [typedWords, setTypedWords] = useState<string[]>([]);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [status, setStatus] = useState<Status>("idle");
@@ -138,6 +138,13 @@ export function TypingTest({
 
   const lineHeightPx = 64;
   const toolbarFont = "font-mono";
+
+  // Generate words on client mount to avoid hydration mismatch
+  useEffect(() => {
+    const w = makeWordList(140, false, false);
+    setWords(w);
+    setTypedWords(Array(w.length).fill(""));
+  }, []);
 
   const reset = () => {
     const nextWords = makeWordList(140, false, false);
@@ -347,6 +354,8 @@ export function TypingTest({
   /* ═══════════════════════════════════════════════
      RESULTS SCREEN
      ═══════════════════════════════════════════════ */
+  if (words.length === 0) return null;
+
   if (status === "finished") {
     const finalWpm = totalSeconds > 0 ? Math.round((correctChars / 5) / (totalSeconds / 60)) : 0;
     const rawWpm = totalSeconds > 0 ? Math.round((totalKeypresses / 5) / (totalSeconds / 60)) : 0;

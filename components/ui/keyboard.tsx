@@ -720,7 +720,7 @@ function Key({
         <div
           className={cn(
             "relative z-10 h-[37px] rounded-[6px] border border-t-0 border-black/40 transition-all duration-100",
-            "text-[8px] font-sans font-light tracking-tight flex flex-col items-center justify-between p-1 gap-0.5 select-none",
+            "text-[8px] font-mono font-normal tracking-tight flex flex-col items-center justify-between p-1 gap-0.5 select-none",
             className,
           )}
           style={{
@@ -1038,9 +1038,9 @@ function toRgba(color: string, alpha: number): string {
   const value = color.slice(1);
   const hex = value.length === 3
     ? value
-        .split("")
-        .map((char) => `${char}${char}`)
-        .join("")
+      .split("")
+      .map((char) => `${char}${char}`)
+      .join("")
     : value;
 
   if (hex.length !== 6) {
